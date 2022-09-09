@@ -1,0 +1,22 @@
+const seconds = 1000, minutes = seconds * 60, hours = minutes * 60, days = hours * 24, years = days * 365;
+
+function loveTime() {
+    console.log("OK");
+    let t1 = new Date(1641304370000), t2 = new Date();
+    let diff = t2 - t1;
+    let diffYears = Math.floor(diff / years);
+    let diffDays = Math.floor(diff / days - diffYears * 365);
+    let diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    let diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    let diffSeconds = Math.floor(
+        (diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds
+    );
+    if(diffYears){
+        text = "我们已经在一起 " + diffYears + "年" + diffDays + "天" + diffHours + "小时" + diffMinutes + "分钟" + diffSeconds + "秒啦";
+    }else{
+        text = "我们已经在一起 " + diffDays + "天" + diffHours + "小时" + diffMinutes + "分钟" + diffSeconds + "秒啦"
+    }
+    document.getElementById("loveTime").innerHTML = text;
+}
+
+setInterval(loveTime, 250);
